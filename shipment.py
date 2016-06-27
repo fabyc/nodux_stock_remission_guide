@@ -19,17 +19,21 @@ from trytond.model import ModelSQL, Workflow, fields, ModelView
 from trytond.transaction import Transaction
 from trytond.wizard import Wizard, StateTransition, StateView, Button
 from trytond.pool import Pool, PoolMeta
-    
+
 __all__ = ['ShipmentOut']
 __metaclass__ = PoolMeta
 
 class ShipmentOut():
     "Customer Shipment"
     __name__ = 'stock.shipment.out'
-    
-    motivo_traslado = fields.Char('Motivo de Traslado', required = True)
-    dir_destinatario = fields.Char(u'Dirección de LLegada de Productos', required = True)
-    
+
+    motivo_traslado = fields.Char('Motivo de Traslado', states={
+        'required': Eval('state') == 'packed',
+    })
+    dir_destinatario = fields.Char(u'Dirección de LLegada de Productos', states={
+        'required': Eval('state') == 'packed',
+    })
+
     @classmethod
     def __setup__(cls):
         super(ShipmentOut, cls).__setup__()
