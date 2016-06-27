@@ -29,9 +29,11 @@ class ShipmentOut():
 
     motivo_traslado = fields.Char('Motivo de Traslado', states={
         'required': Eval('state') == 'packed',
+        'readonly': Eval('state') == 'done',
     })
     dir_destinatario = fields.Char(u'Dirección de LLegada de Productos', states={
         'required': Eval('state') == 'packed',
+        'readonly': Eval('state') == 'done',
     })
 
     @classmethod
