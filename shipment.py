@@ -21,10 +21,9 @@ from trytond.wizard import Wizard, StateTransition, StateView, Button
 from trytond.pool import Pool, PoolMeta
 
 __all__ = ['ShipmentOut']
-__metaclass__ = PoolMeta
 
 class ShipmentOut():
-    "Customer Shipment"
+    __metaclass__ = PoolMeta
     __name__ = 'stock.shipment.out'
 
     motivo_traslado = fields.Char('Motivo de Traslado', states={
