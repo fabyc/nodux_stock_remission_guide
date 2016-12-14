@@ -11,7 +11,7 @@
             <field name="name">Guía de Remisión Fisica</field>
             <field name="model">stock.shipment.out</field>
             <field name="report_name">stock.shipment.out.delivery_note</field>
-            <field name="report">nodux_stock_remission_guide/remission_guide_f.odt</field>
+            <field name="report">nodux_stock_remission_guide/delivery_note.odt</field>
             <field name="style"></field>
         </record>
     </data>
