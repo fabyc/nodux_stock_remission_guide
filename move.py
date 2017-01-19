@@ -27,6 +27,8 @@ class Move():
     "Stock Move"
     __name__ = 'stock.move'
 
+    internal = fields.Boolean('Movimiento Interno')
+
     @classmethod
     def __setup__(cls):
         super(Move, cls).__setup__()
