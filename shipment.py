@@ -20,7 +20,7 @@ from trytond.transaction import Transaction
 from trytond.wizard import Wizard, StateTransition, StateView, Button
 from trytond.pool import Pool, PoolMeta
 
-__all__ = ['ShipmentOut']
+__all__ = ['ShipmentOut', 'ShipmentInternal']
 
 class ShipmentOut():
     __metaclass__ = PoolMeta
@@ -38,3 +38,25 @@ class ShipmentOut():
     @classmethod
     def __setup__(cls):
         super(ShipmentOut, cls).__setup__()
+
+class ShipmentInternal():
+    "Internal Shipment"
+    __metaclass__ = PoolMeta
+    __name__ = 'stock.shipment.internal'
+
+    @classmethod
+    def __setup__(cls):
+        super(ShipmentInternal, cls).__setup__()
+        cls.moves.domain[0] = [('from_location', '=', Eval('from_location'))]
+
+    @classmethod
+    def default_effective_date(cls):
+        date = Pool().get('ir.date')
+        date = date.today()
+        return date
+
+    @classmethod
+    def default_planned_date(cls):
+        date = Pool().get('ir.date')
+        date = date.today()
+        return date
